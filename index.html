@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPA Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="auth-panel" aria-label="Account sync">
+        <div>
+          <strong id="authTitle">Local mode</strong>
+          <span id="authStatus">Courses are saved only in this browser.</span>
+        </div>
+        <div class="auth-actions">
+          <button id="signInButton" type="button">Sign in with Google</button>
+          <button id="signOutButton" class="secondary-button" type="button" hidden>
+            Sign out
+          </button>
+        </div>
+      </section>
+
+      <section class="summary-panel" aria-labelledby="app-title">
+        <div>
+          <p class="eyebrow">Course Planner</p>
+          <h1 id="app-title">GPA Calculator</h1>
+          <p class="intro">
+            Add each course with its grade and credits. The calculator updates
+            your GPA automatically on a 6 to 10 scale.
+          </p>
+        </div>
+
+        <div class="gpa-meter" aria-live="polite">
+          <span class="meter-label">Estimated GPA</span>
+          <strong id="gpaValue">0.00</strong>
+          <span id="courseCount">No courses yet</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="GPA calculator">
+        <form id="courseForm" class="course-form">
+          <label>
+            Course name
+            <input
+              id="courseName"
+              type="text"
+              autocomplete="off"
+              placeholder="Calculus I"
+              required
+            />
+          </label>
+
+          <label>
+            Grade
+            <input id="courseGrade" type="number" min="6" max="10" step="0.1" value="8" required />
+          </label>
+
+          <label>
+            Credits
+            <input id="courseCredits" type="number" min="0.5" max="12" step="0.5" value="3" />
+          </label>
+
+          <div class="form-actions">
+            <button id="submitButton" type="submit">Add Course</button>
+            <button id="cancelEditButton" class="secondary-button" type="button" hidden>
+              Cancel
+            </button>
+          </div>
+        </form>
+
+        <section class="projection-panel" aria-labelledby="projectionTitle">
+          <div>
+            <h2 id="projectionTitle">Grade possibilities</h2>
+            <p id="projectionDescription">
+              Estimated GPA if this course receives each grade.
+            </p>
+          </div>
+          <div id="projectionList" class="projection-list" aria-live="polite"></div>
+        </section>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Course</th>
+                <th scope="col">Grade</th>
+                <th scope="col">Credits</th>
+                <th scope="col">Points</th>
+                <th scope="col"><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="courseTable">
+              <tr class="empty-row">
+                <td colspan="5">Add your first course to estimate your GPA.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
